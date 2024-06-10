@@ -3,17 +3,19 @@ import Image from 'next/image'
 import { HiPencilSquare  } from "react-icons/hi2";
 import { HiArrowLeftOnRectangle } from "react-icons/hi2";
 import { useSession, signIn, signOut } from "next-auth/react"
+import { useRouter } from 'next/router';
 
 const USER_IMAGE='https://res.cloudinary.com/dknvsbuyy/image/upload/v1686314044/1617826370281_30f9a2a96a.jpg'
 function Header() {
     const { data: session } = useSession()
+    const router = useRouter();
     console.log("Session", session);
   return (
     <div className='flex justify-between p-3 border-b-[2px] border-[#FF3366]'>
-      <img src="./Images/logo.png" width={60} alt='Fit hub logo'/>
+      <img src="./Images/logo.png" width={60} alt='Fit hub logo' onClick={()=>router.push('/')} className='cursor-pointer'/>
       <div className='flex gap-4'>
         <div>
-            <button className='bg-black p-2 px-3 text-white rounded-full'> 
+            <button className='bg-black p-2 px-3 text-white rounded-full' onClick={()=>router.push('/create-post')}> 
                 <span className='hidden sm:block'>
                     CREATE POST
                 </span> 
